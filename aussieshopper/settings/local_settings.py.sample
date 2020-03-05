@@ -1,0 +1,23 @@
+# Django dev settings for aussieshopper project.
+from aussieshopper.settings import *
+
+DEBUG = True
+
+# Start:Secrets #
+SECRET_KEY = '<YOUR_KEY>'
+
+TELEGRAM_BOT_TOKEN = '<YOUR_TOKEN>'
+
+DATABASES = {
+    'default': {
+        'NAME': '<DB_NAME>',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'HOST': '<DB_HOST>',
+        'USER': '<DB_UNAME>',
+        'PASSWORD': '<DB_PASS>'
+    }
+}
+
+# End:Secrets #
+
+ALLOWED_HOSTS = ['*']

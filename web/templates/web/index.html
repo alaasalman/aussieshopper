@@ -1,0 +1,39 @@
+{% extends 'web/base.html' %}
+{% load render_bundle from webpack_loader %}
+
+{% block title %}Homepage{% endblock %}
+
+{% block extrajs %}
+  {% render_bundle 'main' %}
+{% endblock %}
+
+{% block content %}
+  <article class="message is-warning">
+    <div class="message-header">
+      <p>Warning</p>
+    </div>
+    <div class="message-body">
+      Welcome to the Aussie Shopper Homepage. This is still a work-in-progress for now.
+    </div>
+  </article>
+
+  <div>
+    <div class="columns">
+      <div class="column is-narrow">
+        <aside class="menu">
+          <p class="menu-label">
+            General
+          </p>
+          <ul class="menu-list">
+            <li>
+            </li>
+          </ul>
+        </aside>
+      </div>
+      <div class="column">
+        <div id="statscontainer"></div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
