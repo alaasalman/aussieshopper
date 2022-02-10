@@ -8,5 +8,4 @@ db.sqlite3
 conf.json
 node_modules/
 yarn.lock
-bundles/*
 /web/static/bundles/

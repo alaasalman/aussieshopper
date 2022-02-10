@@ -6,6 +6,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api/',
         include('api.urls', namespace='api')),
+    url('^captcha/', include('captcha.urls')),
     url(r'^',
         include('web.urls', namespace='web'))
 ]

@@ -34,7 +34,8 @@ INSTALLED_APPS = [
     'webpack_loader',
     'rest_framework',
     'django_extensions',
-    'raven.contrib.django.raven_compat',
+    'anymail',
+    'captcha',
     'api',
     'web'
 ]
@@ -62,6 +63,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'web.context_processor.export_settings'
             ],
         },
     },
@@ -164,3 +166,6 @@ WEBPACK_LOADER = {
         'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json')
     }
 }
+
+EMAIL_BACKEND = "anymail.backends.sendgrid.EmailBackend"
+CAPTCHA_CHALLENGE_FUNCT = 'captcha.helpers.random_char_challenge'

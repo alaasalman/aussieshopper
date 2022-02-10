@@ -1,39 +1,190 @@
 {% extends 'web/base.html' %}
 {% load render_bundle from webpack_loader %}
+{% load static %}
 
 {% block title %}Homepage{% endblock %}
 
-{% block extrajs %}
-  {% render_bundle 'main' %}
-{% endblock %}
-
 {% block content %}
-  <article class="message is-warning">
-    <div class="message-header">
-      <p>Warning</p>
-    </div>
-    <div class="message-body">
-      Welcome to the Aussie Shopper Homepage. This is still a work-in-progress for now.
-    </div>
-  </article>
+  <section class="section">
+    <div class="container">
+      {% if messages %}
+        {% for message in messages %}
+          <div class="notification is-{{ message.tags }}">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+      <h1 class="title">Welcome to the Aussie Shopper Homepage.</h1>
+      <h1 class="subtitle">What is it?</h1>
+      <div class="content">
+        <p>
+          AussieShopper is a service that helps you in finding specials in the land down under. You simply need to
+          provide it with a few words that describe your interests and you will receive the latest bargains straight to
+          your pocket. For example, If I’m in the market for new earphones, I add that as an interest and I will get
+          notified when the service finds a deal on earphones.
+        </p>
 
-  <div>
-    <div class="columns">
-      <div class="column is-narrow">
-        <aside class="menu">
-          <p class="menu-label">
-            General
-          </p>
-          <ul class="menu-list">
-            <li>
-            </li>
-          </ul>
-        </aside>
+        <p>
+          It works by consuming the fantastic deals at OzBargain and delivers the specials to you via the
+          <a href="http://telegram.org">Telegram</a> chat application. To make use of AussieShopper, search for the
+          Telegram bot @AussieShopperBot or simply click on
+          <a href="https://telegram.me/aussieshopperbot">https://telegram.me/aussieshopperbot</a> to add the bot
+          automatically.
+        </p>
       </div>
-      <div class="column">
-        <div id="statscontainer"></div>
+      <div class="columns is-centered">
+        <div class="column is-one-third">
+          <div class="card">
+            <div class="card-image">
+              <figure class="image">
+                <img src="{% static "images/telegramfindbot.png" %}" alt="Placeholder image">
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="content">
+                Find the AussieShopperBot by typing <code>@AussieShopperBot</code>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h1 class="subtitle">How does it work?</h1>
+      <p>
+        After you add the bot and send it the <code>/start</code> command, you can interact with it via the following
+        commands:
+      </p>
+      <div class="content">
+        <ul>
+          <li><code>/addinterest &lt;interest&gt;</code> allows you to add a word as an interest for example <code>/addinterest
+                                                                                                                   earphones</code>.
+          <li><code>/removeinterest &lt;interest&gt;</code> does the opposite. <code>&lt;interest&gt;</code> can also
+                                                            be
+                                                            a term such as "belkin plug".
+          </li>
+          <li><code>/reset</code> to remove all interests.</li>
+          <li><code>/latest</code> will show you the "latest" deals since you last checked or from the beginning of
+                                   the
+                                   day so as not to spam you with a lot of messages.
+          </li>
+          <li><code>/listinterest</code> lists your currently registered interests.</li>
+          <li><code>/contact &lt;text&gt;</code> to send a message to the admin ex. <code>/contact I love your
+                                                                                          work</code>.
+          </li>
+          <li><code>/help</code> will send you some help regarding the available commands.</li>
+        </ul>
       </div>
     </div>
-  </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-one-third">
+          <div class="card">
+            <div class="card-image">
+              <figure class="image">
+                <img src="{% static "images/telegraminterestssample.png" %}"
+                     alt="Sample of Telegram bot interests listing">
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="content">
+                This screenshot shows how you will receive specials matching your interests. The message will include a
+                link to the original Ozbargain page mentioning the special.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="column is-one-third">
+          <div class="card">
+            <div class="card-image">
+              <figure class="image">
+                <img src="{% static "images/telegramsampleinteraction.png" %}"
+                     alt="Sample of Telegram bot general interaction">
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="content">
+                This screenshot shows a sample interaction with the bot. It shows functions such as adding an interest
+                and
+                asking to see the help message.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
 
+  <section class="section is-paddingless">
+    <div class="container">
+      <h1 class="subtitle">How much does it cost?</h1>
+      <p>Pricing is hard and I created this service because I needed it. I'd like to share it as long as I can. This
+         product is free for now.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h1 class="subtitle">How can I get in touch?</h1>
+      <p>If you already have and use the bot, you can use the <code>/contact &lt;message&gt;</code> command and your
+         message will reach me.</p>
+      <p>Otherwise, you can use the form below.</p>
+      <div class="columns">
+        <div class="column is-half">
+          <form method="post">
+            {%  csrf_token %}
+            <div class="field">
+              <label class="label">Name</label>
+              <div class="control">
+                <input name="name" class="input" type="text" placeholder="Enter your name">
+              </div>
+            </div>
+            <div class="field">
+              <label class="label">Email</label>
+              <div class="control">
+                <input name="email" class="input" type="email" placeholder="Enter your email if you'd like me to respond">
+              </div>
+            </div>
+            <div class="field">
+              <label class="label">Message</label>
+              <div class="control">
+                <textarea name="message" class="textarea" placeholder="Enter your message"></textarea>
+              </div>
+            </div>
+              <div class="field">
+                  <label class="label">Captcha</label>
+                  <div class="control">
+                      <div class="columns">
+                          <div class="column is-2">
+                              <img src="{{ captcha_img_url }}" alt="Captcha">
+                          </div>
+                          <div class="column is-10">
+                              <input name="captcha_1" class="input" placeholder="Enter captcha">
+                              <input name="captcha_0" type="hidden" value="{{ captcha_key }}">
+                          </div>
+                  </div>
+              </div>
+            <div class="field">
+              <div class="control">
+                <button type="submit" class="button is-primary">Submit</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="footer">
+    <div class="content has-text-centered">
+      <p>
+        <strong>AussieShopper</strong> by <a href="http://codedemigod.com">Alaa Salman</a>. The source code is licensed
+        <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
+                                       is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC
+                                                                                                               SA
+                                                                                                               4.0</a>.
+      </p>
+    </div>
+  </footer>
 {% endblock %}

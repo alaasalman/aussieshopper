@@ -1,0 +1,34 @@
+{% extends 'web/base.html' %}
+{% load render_bundle from webpack_loader %}
+
+{% block title %}Statistics{% endblock %}
+
+{% block extrajs %}
+  {% render_bundle 'main' %}
+{% endblock %}
+
+{% block content %}
+  <section class="section">
+    <nav class="level">
+      <div class="level-item has-text-centered">
+        <div>
+          <p class="heading">Total Deals</p>
+          <p class="title">{{ total_deals }}</p>
+        </div>
+      </div>
+      <div class="level-item has-text-centered">
+        <div>
+          <p class="heading">Total Messages Handled</p>
+          <p class="title">{{ total_messages }}</p>
+        </div>
+      </div>
+    </nav>
+  </section>
+  <section class="section">
+    <div class="columns is-centered">
+      <div class="column is-half">
+      <div id="statscontainer"></div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

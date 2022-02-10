@@ -13,7 +13,7 @@ server {
     ssl on;
     ssl_certificate /etc/letsencrypt/live/aussieshopper.codedemigod.com/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/aussieshopper.codedemigod.com/privkey.pem;
-    listen 80;
+
     server_name  aussieshopper.codedemigod.com;
 
     access_log  /home/aussieshopper/logs/access.log;
@@ -26,6 +26,10 @@ server {
     location /static/ {
         expires modified +1h;
         alias /home/aussieshopper/static/;
+    }
+
+    location /sitemap.xml {
+        alias /home/aussieshopper/static/sitemap.xml;
     }
 
     location /media/public/ {

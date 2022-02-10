@@ -5,18 +5,33 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% block title %}{% endblock %} :: AussieShopper</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.0/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/bulmaswatch/darkly/bulmaswatch.min.css">
   <link rel="stylesheet" href="//cdn.materialdesignicons.com/2.0.46/css/materialdesignicons.min.css">
   {% block extracss %}{% endblock extracss %}
   {#  <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>#}
 </head>
 <body>
-<section class="section">
-  <div class="container">
-    {% block content %}
-    {% endblock %}
-  </div>
+<section class="section is-paddingless">
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item">
+        <img src="{% static 'images/ASlogo.png' %}" width="25" height="25" alt="AussieShopper">
+      </a>
+    </div>
+    <div class="navbar-menu">
+      <a class="navbar-item" href="{% url 'web:web-index' %}">
+        Home
+      </a>
+      <a class="navbar-item" href="{% url 'web:web-statistics' %}">
+        Statistics
+      </a>
+    </div>
+  </nav>
 </section>
+{% block content %}
+{% endblock %}
+
 {% block extrajs %}{% endblock extrajs %}
 {% if USE_GOOGLE_ANALYTICS %}
   <!-- Global site tag (gtag.js) - Google Analytics -->

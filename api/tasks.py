@@ -62,8 +62,6 @@ def email_user(email, template_name, context=None, attach_filelocation=None):
     msg = EmailMessage(rendered_subject_template, rendered_body_template, to=[email])
     msg.content_subtype = 'html'  # Main content is now text/html
 
-    msg.bcc = ['alaa@codedemigod.com.au']
-
     if attach_filelocation is not None:
         msg.attach_file(attach_filelocation)
 
@@ -396,11 +394,13 @@ def command_contact(message: Message):
     Command to contact admin which the user with ID 1. This delivers the message to the admin.
     """
     from_user = message.from_user
-    admin_user = models.User.objects.get(pk=1)
-    admin_chat_id = admin_user.userprofile.chat_id
 
     # send message to admin
-    # message_user("User {0} saying: {1}".format(from_user.id, message.text), admin_chat_id, instant=True)
+    email_managers('contact.html', {
+        'user_id': from_user.id,
+        'message_text': message.text
+    })
+
     # tell user that their message will be delivered
     message_user("Your message has been delivered. If necessary, someone will be in touch shortly.", message.chat_id, instant=True)
 
