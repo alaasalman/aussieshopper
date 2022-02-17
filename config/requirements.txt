@@ -176,9 +176,9 @@ psycopg2-binary==2.9.3; python_version >= "3.6" \
 ptyprocess==0.7.0; sys_platform != "win32" and python_version >= "3.7" \
     --hash=sha256:4b41f3967fce3af57cc7e94b888626c18bf37a083e3651ca8feeb66d492fef35 \
     --hash=sha256:5c5d0a3b48ceee0b48485e0c26037c0acd7d29765ca3fbb5cb3831d347423220
-pygments==2.2.0 \
-    --hash=sha256:78f3f434bcc5d6ee09020f92ba487f95ba50f1e3ef83ae96b9d5ffa1bab25c5d \
-    --hash=sha256:dbae1046def0efb574852fab9e90209b23f556367b5a320c0bcb871c77c3e8cc
+pygments==2.7.4 \
+    --hash=sha256:bc9591213a8f0e0ca1a5e68a479b4887fdc3e75d0774e5c71c31920c427de435 \
+    --hash=sha256:df49d09b498e83c1a73128295860250b0b7edd4c723a32e9bc0d295c7c2ec337
 python-telegram-bot==6.1.0 \
     --hash=sha256:90ac2ff18f6217ad06330af98ba148957c55b92ae473c65b6726e6b17d3674f6 \
     --hash=sha256:f056bee9373b2789786a20366b4c986daa0569baa75c7ca0e32729487ba939d0
