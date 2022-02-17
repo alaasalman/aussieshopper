@@ -15,6 +15,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='logchatmessage',
             name='direction',
-            field=models.CharField(choices=[('DI', 'Incoming'), ('DO', 'Outgoing')], default='DI', max_length=1, verbose_name='Message Direction'),
+            field=models.CharField(choices=[('DI', 'Incoming'), ('DO', 'Outgoing')], default='DI', max_length=2, verbose_name='Message Direction'),
         ),
     ]

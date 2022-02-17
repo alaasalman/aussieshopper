@@ -9,7 +9,6 @@ from html.parser import HTMLParser
 import telegram
 from celery import shared_task
 from celery.schedules import crontab
-from celery.task import periodic_task
 from celery.utils import log
 from django.conf import settings
 from django.core.mail import EmailMessage
@@ -70,7 +69,7 @@ def email_user(email, template_name, context=None, attach_filelocation=None):
     msg.send()
 
 
-@periodic_task(run_every=crontab(minute=0, hour='*/2'))
+@shared_task
 def fetch_rss():
     stop_words = [
         'a', 'the', 'of',
